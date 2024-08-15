@@ -34,46 +34,65 @@
 			(idt + 0)->_attributes	=	0;
 			(idt + 0)->_isrHigh	=	0;
 
-			(idt + 1)->_isrLow	=	(uint32_t)keyboardHandler;
+			(idt + 1)->_isrLow	=	(uint32_t)_keyboardHandler;
 			(idt + 1)->_kernelCs	=	0x08;
 			(idt + 1)->_reserved	=	0x00;
 			(idt + 1)->_attributes	=	0x8E;
-			(idt + 1)->_isrHigh	=	(uint32_t)keyboardHandler >> 16;
+			(idt + 1)->_isrHigh	=	(uint32_t)_keyboardHandler >> 16;
 
 			descriptor._limit	=	0x0F;
 			descriptor._base	=	(uint32_t)idt;
 
-			programmableInterruptControllerInit();
+			_programmableInterruptControllerInit();
 
-			programmableInterruptControllerMaskSet(0xFF);
+			_programmableInterruptControllerMaskSet(0xFF);
 
-			loadInterruptDescriptorTable(&descriptor);
+			_loadInterruptDescriptorTable(&descriptor);
 
-			programmableInterruptControllerMaskSet(0xFD);
+			_programmableInterruptControllerMaskSet(0xFD);
 
-			enableInterrupt();
+			_enableInterrupt();
 
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 5) * 2));
+			_printLine(KERN_STR, GREEN);
 
-			_printLine(KERN_STR, 2, COLUMNS * 5);
-
-			_printLine(LOGOSTR0, 2, COLUMNS * 6);
-			_printLine(LOGOSTR1, 2, COLUMNS * 7);
-			_printLine(LOGOSTR2, 2, COLUMNS * 8);
-			_printLine(LOGOSTR3, 2, COLUMNS * 9);
-			_printLine(LOGOSTR4, 2, COLUMNS * 10);
-			_printLine(LOGOSTR5, 2, COLUMNS * 11);
-			_printLine(LOGOSTR6, 2, COLUMNS * 12);
-			_printLine(LOGOSTR7, 2, COLUMNS * 13);
-			_printLine(LOGOSTR8, 2, COLUMNS * 14);
-			_printLine(LOGOSTR9, 2, COLUMNS * 15);
-			_printLine(LOGOSTR10, 2, COLUMNS * 16);
-			_printLine(LOGOSTR11, 2, COLUMNS * 17);
-			_printLine(LOGOSTR12, 2, COLUMNS * 18);
-			_printLine(LOGOSTR13, 2, COLUMNS * 19);
-			_printLine(LOGOSTR14, 2, COLUMNS * 20);
-			_printLine(LOGOSTR15, 2, COLUMNS * 21);
-			_printLine(LOGOSTR16, 2, COLUMNS * 22);
-			_printLine(LOGOSTR17, 2, COLUMNS * 23);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 6) * 2));
+			_printLine(LOGOSTR0, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 7) * 2));
+			_printLine(LOGOSTR1, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 8) * 2));
+			_printLine(LOGOSTR2, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 9) * 2));
+			_printLine(LOGOSTR3, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 10) * 2));
+			_printLine(LOGOSTR4, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 11) * 2));
+			_printLine(LOGOSTR5, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 12) * 2));
+			_printLine(LOGOSTR6, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 13) * 2));
+			_printLine(LOGOSTR7, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 14) * 2));
+			_printLine(LOGOSTR8, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 15) * 2));
+			_printLine(LOGOSTR9, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 16) * 2));
+			_printLine(LOGOSTR10, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 17) * 2));
+			_printLine(LOGOSTR11, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 18) * 2));
+			_printLine(LOGOSTR12, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 19) * 2));
+			_printLine(LOGOSTR13, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 20) * 2));
+			_printLine(LOGOSTR14, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 21) * 2));
+			_printLine(LOGOSTR15, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 22) * 2));
+			_printLine(LOGOSTR16, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 23) * 2));
+			_printLine(LOGOSTR17, GREEN);
+			_setPosition(VIDEO_MEMORY + ((COLUMNS * 24) * 2));
 
 			while(1);
 

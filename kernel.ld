@@ -6,8 +6,9 @@ SECTIONS
 {
 	.	=	0x1000;
 
-	.text	:	AT(0x7E00)	{ *(.text) }
-	.data	:	AT(0x7E00)	{ *(.data) }
-	.bss	:	AT(0x7E00)	{ *(.bss) }
+	.text	:	ALIGN(4096)	{ *(.text) }
+	.rodata	:	ALIGN(4096)	{*(.rodata*) }
+	.data	:	ALIGN(4096)	{ *(.data) }
+	.bss	:	ALIGN(4096)	{ *(.bss) }
 }
 

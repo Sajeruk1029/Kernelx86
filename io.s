@@ -1,40 +1,40 @@
 .FILE	"io.s"
 
-	.GLOBL	writePort
-	.TYPE	writePort, @function
+	.GLOBL	_writePort
+	.TYPE	_writePort, @function
 
-	.GLOBL	readPort
-	.TYPE	readPort, @function
+	.GLOBL	_readPort
+	.TYPE	_readPort, @function
 
-		writePort:
+		_writePort:
 			.CODE32
 
 				PUSHL	%EBP
 				MOVL	%ESP, %EBP
 
-				PUSHW	%AX
-				PUSHW	%DX
+				PUSHL	%EAX
+				PUSHL	%EDX
 
 				MOVB	12(%EBP), %AL
 				MOVW	8(%EBP), %DX
 
 				OUTB	%AL, %DX
 
-				POPW	%AX
-				POPW	%DX
+				POPL	%EDX
+				POPL	%EAX
 
 				MOVL	%EBP, %ESP
 				POPL	%EBP
 
 				RETL
 
-		readPort:
+		_readPort:
 			.CODE32
 
 				PUSHL	%EBP
 				MOVL	%ESP, %EBP
 
-				PUSHW	%DX
+				PUSHL	%EDX
 
 				MOVL	$0x00, %EAX
 
@@ -42,7 +42,7 @@
 
 				INB	%DX, %AL
 
-				POPW	%DX
+				POPL	%EDX
 
 				MOVL	%EBP, %ESP
 				POPL	%EBP

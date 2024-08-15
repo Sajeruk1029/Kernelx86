@@ -1,25 +1,33 @@
 #include	"video.h"
 
-	void	
-		_printLine(char*	line, char	color, int offset)
-		{
-			volatile	char*	videoMemory	=	(char*)VIDEO_MEMORY + offset * 2;
+	char*	_position	=	(char*)VIDEO_MEMORY;
 
+	void	
+		_printLine(char*	line, char	color)
+		{
 			for(int	counter	=	0; *(line + counter); ++counter)
 			{
-				*videoMemory++	=	*(line + counter);
-				*videoMemory++	=	color;
+				*_position++	=	*(line + counter);
+				*_position++	=	color;
 			}
 		}
 
 	void	
 		_clearScreen(void)
 		{
-			volatile	char*	videoMemory	=	(char*)VIDEO_MEMORY;
+			_position	=	(char*)VIDEO_MEMORY;
 
 			for(int	counter	=	0; counter < COLUMNS * ROWS; ++counter)
 			{
-				*videoMemory++	=	0;
-				*videoMemory++	=	0;
+				*_position++	=	0;
+				*_position++	=	0;
 			}
+
+			_position	=	(char*)VIDEO_MEMORY;
+		}
+
+	void
+		_setPosition(uint32_t	position)
+		{
+			_position	=	(char*)position;
 		}

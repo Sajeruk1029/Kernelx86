@@ -1,39 +1,43 @@
 #ifndef	VIDEO_H
 #define	VIDEO_H
 
-	#define VIDEO_MEMORY 0xB8000
+	#include	<stdint.h>
 
-	#define	COLUMNS	80
-	#define	ROWS	25
+		#define VIDEO_MEMORY 0xB8000
 
-		#pragma pack(push, 1)
+		#define	COLUMNS	80
+		#define	ROWS	25
 
-			typedef	enum
-			{
-				BLACK,
-				BLUE,
-				GREEN,
-				CYAN,
-				RED,
-				MAGENTA,
-				BROWN,
-				LIGHTGRAY,
-				DARKGRAY,
-				LIGHTBLUE,
-				LIGHTGREEN,
-				LIGHTCYAN,
-				LIGHTRED,
-				LIGHTMAGENTA,
-				LIGHTBROWN,
-				WHITE
-			}	Color;
+			#pragma pack(push, 1)
 
-		#pragma pack(pop)
+				typedef	enum
+				{
+					BLACK,
+					BLUE,
+					GREEN,
+					CYAN,
+					RED,
+					MAGENTA,
+					BROWN,
+					LIGHTGRAY,
+					DARKGRAY,
+					LIGHTBLUE,
+					LIGHTGREEN,
+					LIGHTCYAN,
+					LIGHTRED,
+					LIGHTMAGENTA,
+					LIGHTBROWN,
+					WHITE
+				}	_Color;
 
-			void	
-					_printLine(char*	line, char	color, int offset);
-			void	
-					_clearScreen(void);
+			#pragma pack(pop)
+
+				void	
+						_printLine(char*	line, char	color);
+				void	
+						_clearScreen(void);
+				void	
+						_setPosition(uint32_t	position);
 
 #endif
 

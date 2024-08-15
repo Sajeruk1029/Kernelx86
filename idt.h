@@ -28,9 +28,14 @@
 
 			#pragma pack(pop)
 
-				void	programmableInterruptControllerInit(void);
-				void	programmableInterruptControllerMaskSet(uint8_t	mask);
-				void	enableInterrupt(void);
-				void	disableInterrupt(void);
-				void	loadInterruptDescriptorTable(_IDTDescriptor*	descriptor);
+				void	
+					_programmableInterruptControllerInit(void);
+				void	
+					_programmableInterruptControllerMaskSet(uint8_t	mask);
+				void	
+					_enableInterrupt(void);
+				void	
+					_disableInterrupt(void);
+				void	
+					_loadInterruptDescriptorTable(_IDTDescriptor*	descriptor);
 #endif

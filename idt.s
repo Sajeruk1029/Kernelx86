@@ -1,31 +1,23 @@
 .FILE	"idt.s"
 
-	#.GLOBL	interruptHandler
-	#.TYPE	interruptHandler, @function
+	.GLOBL	_programmableInterruptControllerInit
+	.TYPE	_programmableInterruptControllerInit, @function
 
-	.GLOBL	programmableInterruptControllerInit
-	.TYPE	programmableInterruptControllerInit, @function
+	.GLOBL	_programmableInterruptControllerMaskSet
+	.TYPE	_programmableInterruptControllerMaskSet, @function
 
-	.GLOBL	programmableInterruptControllerMaskSet
-	.TYPE	programmableInterruptControllerMaskSet, @function
+	.GLOBL	_enableInterrupt
+	.TYPE	_enableInterrupt, @function
 
-	.GLOBL	enableInterrupt
-	.TYPE	enableInterrupt, @function
+	.GLOBL	_disableInterrupt
+	.TYPE	_disableInterrupt, @function
 
-	.GLOBL	disableInterrupt
-	.TYPE	disableInterrupt, @function
+	.GLOBL	_loadInterruptDescriptorTable
+	.TYPE	_loadInterruptDescriptorTable, @function
 
-	.GLOBL	loadInterruptDescriptorTable
-	.TYPE	loadInterruptDescriptorTable, @function
+	.EXTERN	_writePort
 
-	.EXTERN	writePort
-	.TYPE	writePort, @function
-
-	#.EXTERN	keyboardHandlerKernel
-	#.TYPE	keyboardHandlerKernel, @function
-
-
-		programmableInterruptControllerInit:
+		_programmableInterruptControllerInit:
 			.CODE32
 				PUSHL	%EBP
 				MOVL	%ESP, %EBP
@@ -33,44 +25,46 @@
 				#ICW1
 				PUSHL	$0x11
 				PUSHL	$0x20
-				CALLL	writePort
+				CALLL	_writePort
 
 				PUSHL	$0x11
 				PUSHL	$0xA0
-				CALLL	writePort
+				CALLL	_writePort
 
 				#ICW2
 				PUSHL	$0x00
 				PUSHL	$0x21
-				CALLL	writePort
+				CALLL	_writePort
 
 				PUSHL	$0x08
 				PUSHL	$0xA1
-				CALLL	writePort
+				CALLL	_writePort
 
 				#ICW3
 				PUSHL	$0x00
 				PUSHL	$0x21
-				CALLL	writePort
+				CALLL	_writePort
 
 				PUSHL	$0x08
 				PUSHL	$0xA1
-				CALLL	writePort
+				CALLL	_writePort
 
 				#ICW4
 				PUSHL	$0x01
 				PUSHL	$0x21
-				CALLL	writePort
+				CALLL	_writePort
 
 				PUSHL	$0x01
 				PUSHL	$0xA1
-				CALLL	writePort
+				CALLL	_writePort
+
+				ADDL	$0x40, %ESP
 
 				MOVL	%EBP, %ESP
 				POPL	%EBP
 
 				RETL
-		programmableInterruptControllerMaskSet:
+		_programmableInterruptControllerMaskSet:
 			.CODE32
 				PUSHL	%EBP
 				MOVL	%ESP, %EBP
@@ -81,7 +75,9 @@
 
 				PUSHL	%EAX
 				PUSHL	$0x21
-				CALLL	writePort
+				CALLL	_writePort
+
+				ADDL	$0x08, %ESP
 
 				POPL	%EAX
 
@@ -89,17 +85,17 @@
 				POPL	%EBP
 
 				RETL
-		enableInterrupt:
+		_enableInterrupt:
 			.CODE32
 				STI
 
 				RET
-		disableInterrupt:
+		_disableInterrupt:
 			.CODE32
 				CLI
 
 				RET
-		loadInterruptDescriptorTable:
+		_loadInterruptDescriptorTable:
 			.CODE32
 				PUSHL	%EBP
 				MOVL	%ESP, %EBP
@@ -116,14 +112,3 @@
 				POPL	%EBP
 
 				RETL
-
-		#interruptHandler:
-			#.CODE32
-
-				#PUSHA
-
-				#CALLL	keyboardHandlerKernel
-
-				#POPA
-
-				#IRET

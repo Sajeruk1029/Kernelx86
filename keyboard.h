@@ -1,6 +1,9 @@
 #ifndef	KEYBOARD_H
 #define	KEYBOARD_H
 
-	void	keyboardHandler(void);
+	#include	<stdint.h>
+
+		void	
+			_keyboardHandler(void);
 
 #endif
