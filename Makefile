@@ -18,8 +18,10 @@ LDTTEXT	=	-T kernel.ld
 KERNELSRC	=	kernel.c
 KERNELOBJ	=	kernel.o
 
-STDLIBSRC	=	io.s idt.s keyboard.s video.c
-STDLIBOBJ	=	io.o idt.o keyboard.o video.o
+STDLIBSRC	=	io.s idt.s keyboard.s exceptions.s video.c
+STDLIBOBJ	=	io.o idt.o keyboard.o exceptions.o video.o
+
+LOGO	=#	-D LOGO
 
 KERNELELF	=	kernel.elf
 KERNELBIN	=	kernel.bin
@@ -31,7 +33,7 @@ $(KERNELBIN)	: $(KERNELOBJ) $(STDLIBOBJ)
 	$(OBJCOPY) $(OBJCOPYFORMAT) $(KERNELELF) $(KERNELBIN)
 
 $(KERNELOBJ)	:	$(KERNELSRC)
-	$(CC) -c $(KERNELWFLAGS) $(KERNELSRC) -o $(KERNELOBJ) $(KERNELFLAGS) $(KERNELARCH) $(DEBUG)
+	$(CC) -c $(KERNELWFLAGS) $(KERNELSRC) -o $(KERNELOBJ) $(KERNELFLAGS) $(KERNELARCH) $(DEBUG) $(LOGO)
 
 $(STDLIBOBJ)	:	$(STDLIBSRC)
 	$(CC) -c $^ $(KERNELWFLAGS) $(KERNELFLAGS) $(KERNELARCH) $(DEBUG)

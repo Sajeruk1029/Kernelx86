@@ -26,7 +26,7 @@
 				MOVL	%EBP, %ESP
 				POPL	%EBP
 
-				RETL
+				RETL#	$4
 
 		_readPort:
 			.CODE32
@@ -47,4 +47,4 @@
 				MOVL	%EBP, %ESP
 				POPL	%EBP
 
-				RETL
+				RETL#	$2
