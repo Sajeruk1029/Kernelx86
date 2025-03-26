@@ -231,47 +231,6 @@
 			_setPosition(VIDEO_MEMORY + ((COLUMNS * 5) * 2));
 			_printLine(KERN_STR, GREEN);
 
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 6) * 2));
-
-#ifdef	LOGO
-			_printLine(LOGOSTR0, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 7) * 2));
-			_printLine(LOGOSTR1, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 8) * 2));
-			_printLine(LOGOSTR2, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 9) * 2));
-			_printLine(LOGOSTR3, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 10) * 2));
-			_printLine(LOGOSTR4, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 11) * 2));
-			_printLine(LOGOSTR5, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 12) * 2));
-			_printLine(LOGOSTR6, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 13) * 2));
-			_printLine(LOGOSTR7, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 14) * 2));
-			_printLine(LOGOSTR8, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 15) * 2));
-			_printLine(LOGOSTR9, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 16) * 2));
-			_printLine(LOGOSTR10, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 17) * 2));
-			_printLine(LOGOSTR11, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 18) * 2));
-			_printLine(LOGOSTR12, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 19) * 2));
-			_printLine(LOGOSTR13, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 20) * 2));
-			_printLine(LOGOSTR14, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 21) * 2));
-			_printLine(LOGOSTR15, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 22) * 2));
-			_printLine(LOGOSTR16, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 23) * 2));
-			_printLine(LOGOSTR17, GREEN);
-			//_setPosition(VIDEO_MEMORY + ((COLUMNS * 24) * 2));
-#endif
-
 			//num	/=	0;
 
 			while(1);
